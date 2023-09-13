@@ -7,13 +7,13 @@ import FormularioContato from './Components/FormularioContato'
 function App() {
   return (
     <Provider store={store}>
-      <div>
+      <>
         <GlobalStyle />
         <Container>
-          <ListaContatos />
           <FormularioContato />
+          <ListaContatos />
         </Container>
-      </div>
+      </>
     </Provider>
   )
 }

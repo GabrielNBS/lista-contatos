@@ -5,6 +5,8 @@ import {
   editarContato
 } from '../../store/reducers/contatosSlice'
 import { RootState } from '../../store'
+import { Container } from './styles'
+import { Button } from '../../styles'
 
 const FormularioContato: React.FC = () => {
   const [contato, setContato] = useState({
@@ -32,7 +34,7 @@ const FormularioContato: React.FC = () => {
   }
 
   return (
-    <div>
+    <Container>
       <h2>Adicionar/Editar Contato</h2>
       <form>
         <input
@@ -56,11 +58,11 @@ const FormularioContato: React.FC = () => {
           value={contato.telefone}
           onChange={handleChange}
         />
-        <button type="button" onClick={handleSubmit}>
+        <Button type="button" onClick={handleSubmit}>
           {contato.id === 0 ? 'Adicionar' : 'Editar'}
-        </button>
+        </Button>
       </form>
-    </div>
+    </Container>
   )
 }
 

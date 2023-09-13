@@ -5,6 +5,11 @@ import {
   editarContato
 } from '../../store/reducers/contatosSlice'
 import { RootState } from '../../store'
+import * as S from './styles'
+import { BiSolidContact } from 'react-icons/bi'
+import { MdEmail } from 'react-icons/md'
+import { MdDriveFileRenameOutline } from 'react-icons/md'
+import { Button } from '../../styles'
 
 type Contato = {
   id: number
@@ -34,23 +39,39 @@ const ListaContatos: React.FC = () => {
   }
 
   return (
-    <div>
+    <S.Container>
       <h2>Lista de Contatos</h2>
       <ul>
         {contatos.map(({ email, id, nome, telefone }) => (
           <li key={id}>
-            {nome} ({email}, {telefone})
-            <button onClick={() => handleRemoverContato(id)}>Remover</button>
-            <button
-              onClick={() => handleEditarContato({ id, nome, email, telefone })}
-            >
-              Editar
-            </button>
+            <span>
+              <MdDriveFileRenameOutline />
+              {nome}
+            </span>
+            <span>
+              <MdEmail />
+              {email}
+            </span>
+            <span>
+              <BiSolidContact /> {telefone}
+            </span>
+            <div>
+              <S.RemoveButton onClick={() => handleRemoverContato(id)}>
+                Remover
+              </S.RemoveButton>
+              <S.EditButton
+                onClick={() =>
+                  handleEditarContato({ id, nome, email, telefone })
+                }
+              >
+                Editar
+              </S.EditButton>
+            </div>
           </li>
         ))}
       </ul>
       {contatoEditando && (
-        <div>
+        <S.EditContainer>
           <h2>Editar Contato</h2>
           <input
             type="text"
@@ -82,10 +103,10 @@ const ListaContatos: React.FC = () => {
               })
             }
           />
-          <button onClick={salvarEdicao}>Salvar Edição</button>
-        </div>
+          <Button onClick={salvarEdicao}>Salvar Edição</Button>
+        </S.EditContainer>
       )}
-    </div>
+    </S.Container>
   )
 }
 
